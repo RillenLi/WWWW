@@ -2,3 +2,13 @@
 // for details on configuring this project to bundle and minify static web assets.
 
 // Write your JavaScript code.
+function sendAjax(data, url, onsuccess, onerror, type = "POST")
+{
+    $.ajax({
+        type: type,
+        data: data,
+        url: url,
+        success: onsuccess,
+        error: onerror
+    });
+}

@@ -1,0 +1,9 @@
+﻿@model Data.Models.RegionModel;
+@{
+}
+<form>
+    <label>Code</label><input type="text" value="@Model.Code2Digits" /><br />
+    <label>Name</label><input type="text" value="@Model.Name" /><br />
+    <label>4-digit Code</label><input type="text" value="@Model.RegionCode" /><br />
+    <input type="submit" value="Send"/><input type="reset" />
+</form>

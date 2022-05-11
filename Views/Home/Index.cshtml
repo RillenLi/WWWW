@@ -72,18 +72,30 @@
 
         function clickRegionBtn(regionId) {
             console.log(regionId);
-            $.ajax({
+            sendAjax(({ i: regionId }), '@Url.Action("GetRegion", "Region")', regSuccess, regError)
+            @*$.ajax({
                 type: "POST",
                 data: ({ i: regionId }),
             url: '@Url.Action("GetRegion")',
             success: function (data) {
-                updateTable(data);
+                updateForm(data);
             },
             error: function () {
                 alert('Error occured');
             }
-        });
+        });*@
 
+        }
+        function regSuccess(data) {
+            updateForm(data);
+        }
+
+        function regError() {
+            alert('Error occured');
+        }
+
+        function updateForm(formHtml) {
+            $('#www').html(formHtml);
         }
     </script>
 }

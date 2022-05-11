@@ -25,11 +25,7 @@ namespace WWWW.Controllers
             return View();
         }
         
-        [HttpPost]
-        public IActionResult GetRegion(int i)
-        {
-            return PartialView("_Region", repository.GetRegion(i));
-        }
+        
         [HttpPost]       
 
         public IActionResult GetTable()
