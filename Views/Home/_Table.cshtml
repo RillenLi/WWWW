@@ -1,0 +1,21 @@
+﻿@using Data.Models
+@model List<UserModel>
+@{
+}
+<table>
+    <thead>
+        <tr>
+        <th>Id</th>
+        <th>Имя</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var u in Model)
+        {
+            <tr>
+                <td>@u.Id</td>
+                <td>@u.Name</td>
+            </tr>
+        }
+    </tbody>
+</table>

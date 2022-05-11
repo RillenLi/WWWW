@@ -1,0 +1,89 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div style="display:flex;">
+    <div id="main_menu" style="display:flex;">
+        <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toogle" id="dropdownMenuButton" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Системные справочники
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <button class="dropdown-item" onclick="clickRegionBtn(1)">Клиенты</button>
+                <button class="dropdown-item" href="#">Пользователи</button>
+                <button class="dropdown-item" href="#">Подразделения</button>
+            </div>
+        </div>
+        <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toogle" id="dropdownMenuButton" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Справочники
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="#">Клиенты</a>
+                <a class="dropdown-item" href="#">Пользователи</a>
+                <a class="dropdown-item" href="#">Подразделения</a>
+            </div>
+        </div>
+        <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toogle" id="dropdownMenuButton" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Доступ и пользователи
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="#">Клиенты</a>
+                <a class="dropdown-item" href="#">Пользователи</a>
+                <a class="dropdown-item" href="#">Подразделения</a>
+            </div>
+        </div>
+        <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toogle" id="dropdownMenuButton" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Материалы
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="#">Клиенты</a>
+                <a class="dropdown-item" href="#">Пользователи</a>
+                <a class="dropdown-item" href="#">Подразделения</a>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="www" style="display:flex;flex-direction:column;">
+</div>
+
+@section Scripts
+{
+    <script type="text/javascript">
+    $(document).ready(function () {
+        @*$.ajax('@Url.Action("GetTable")', )*@
+        $.ajax({
+            type: "POST",
+            url: '@Url.Action("GetTable")',
+            success: function (data) {
+                updateTable(data);
+            },
+            error: function () {
+                alert('Error occured');
+            }
+        });
+    });
+
+    function updateTable(tableHtml) {
+        $('#www').html(tableHtml);
+        }
+
+        function clickRegionBtn(regionId) {
+            console.log(regionId);
+            $.ajax({
+                type: "POST",
+                data: ({ i: regionId }),
+            url: '@Url.Action("GetRegion")',
+            success: function (data) {
+                updateTable(data);
+            },
+            error: function () {
+                alert('Error occured');
+            }
+        });
+
+        }
+    </script>
+}
